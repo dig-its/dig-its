@@ -1,0 +1,236 @@
+'use strict';
+
+import { Component } from 'react';
+import { Button, Badge } from 'reactstrap';
+import _findLastIndex from 'lodash/findLastIndex';
+import _chunk from 'lodash/chunk';
+
+import Grid from './Grid';
+
+export default class extends Component {
+    state = {
+        game: null,
+        selected: null,
+        won: false,
+        undoStack: [],
+    };
+
+    componentDidMount = () => {
+        let game;
+        if (game = localStorage.getItem('game')) {
+            let rows = _chunk(JSON.parse(game), 9);
+
+            game = [];
+            rows.forEach(row => {
+                if (row.some(v => v)) {
+                    row.forEach(v => game.push(v));
+                }
+            });
+
+            this.setState({ game });
+        } else {
+            this.newGame();
+        }
+    };
+
+    newGame = () => {
+        const game = [];
+
+        for (let i = 0; i < 9 * 3; i++) {
+            game.push(Math.ceil(Math.random() * 9));
+        }
+
+        this.setState({
+            game,
+            selected: null,
+            won: false,
+            undoStack: [],
+        });
+    };
+
+    completeGame = (game) => {
+        while (game.length % 9 !== 0) {
+            game.push(null);
+        }
+    };
+
+    setState = (update) => {
+        if ('game' in update) {
+            localStorage.setItem('game', JSON.stringify(update.game));
+        }
+
+        super.setState(update);
+    };
+
+    onCellClicked = (index) => {
+        const newState = {};
+
+        if (this.state.selected === null) {
+            newState.selected = index;
+        } else {
+            if (this.state.selected !== index) {
+                const previous = this.state.game[this.state.selected];
+                const current = this.state.game[index];
+
+                if ((previous === current || previous + current === 10) &&
+                    this.cellsAreAdjacent(this.state.selected, index)) {
+
+                    newState.undoStack = this.registerUndo(this.state.selected, previous, index, current);
+
+                    newState.game = this.state.game;
+                    newState.game[this.state.selected] = null;
+                    newState.game[index] = null;
+
+                    newState.selected = null;
+
+                    this.checkWin();
+                } else {
+                    newState.selected = index;
+                }
+            } else {
+                newState.selected = null;
+            }
+        }
+
+        this.setState(newState);
+    };
+
+    registerUndo = (index1, value1, index2, value2) => {
+        let undoStack = this.state.undoStack;
+        undoStack.push({
+            index1,
+            value1,
+            index2,
+            value2,
+        });
+
+        while (undoStack.length > 20) {
+            undoStack.shift();
+        }
+
+        return undoStack;
+    };
+
+    cellsAreAdjacent = (previousIndex, currentIndex) =>
+        this.cellsAreAdjacentHorizontally(previousIndex, currentIndex) ||
+        this.cellsAreAdjacentVertically(previousIndex, currentIndex);
+
+    cellsAreAdjacentHorizontally = (previousIndex, currentIndex) => {
+        let from, to;
+        if (previousIndex < currentIndex) {
+            from = previousIndex;
+            to = currentIndex;
+        } else {
+            from = currentIndex;
+            to = previousIndex;
+        }
+
+        let cells = this.state.game.slice(from + 1, to);
+
+        return cells.every(v => v === null);
+    };
+
+    cellsAreAdjacentVertically = (previousIndex, currentIndex) => {
+        let column = previousIndex % 9;
+
+        if (column === currentIndex % 9) {
+            let from, to;
+            if (previousIndex < currentIndex) {
+                from = previousIndex;
+                to = currentIndex;
+            } else {
+                from = currentIndex;
+                to = previousIndex;
+            }
+
+            for (let i = from + 9; i < to; i += 9) {
+                if (this.state.game[i]) {
+                    return false;
+                }
+            }
+
+            return true;
+        };
+
+        return false;
+    };
+
+    addMoreNumbers = () => {
+        let game = this.state.game;
+
+        // Remove empty cells at the end
+        let lastUsedCell = _findLastIndex(game);
+        game.splice(lastUsedCell + 1);
+
+        this.filteredGame().forEach(c => game.push(c));
+
+        this.completeGame(game);
+
+        this.setState({
+            game,
+            undoStack: []
+        });
+    };
+
+    filteredGame = () => {
+        return this.state.game.filter(c => c);
+    };
+
+    undo = () => {
+        let undoStack = this.state.undoStack;
+        let item = undoStack.pop();
+        if (item) {
+            let game = this.state.game;
+            game[item.index1] = item.value1;
+            game[item.index2] = item.value2;
+
+            this.setState({
+                undoStack,
+                game,
+                selected: null
+            });
+        }
+    };
+
+    checkWin = () => {
+        if (this.filteredGame().length === 0) {
+            this.setState({ won: true });
+        }
+    };
+
+    render = () => {
+        return (
+            <div>
+                <div className="my-3">
+                    <Button color="success" onClick={this.newGame}>New game</Button>{' '}
+                </div>
+                <h2 style={{ display: this.state.won ? 'block' : 'none' }}>You won, great!</h2>
+                {this.state.game &&
+                    <div className="row">
+                        <div className="col-sm-10 col-md-6">
+                            <Grid grid={this.state.game}
+                                selected={this.state.selected}
+                                onCellClicked={this.onCellClicked} />
+                        </div>
+                        <div className="col-sm-2 col-md-6">
+                            <div style={{ position: 'sticky', top: '100px' }}>
+                                <div className="my-2">
+                                    <Button color="primary" onClick={this.addMoreNumbers}>Add more numbers</Button>
+                                </div>
+                                <div className="my-2">
+                                    <Button
+                                        color="secondary"
+                                        disabled={!this.state.undoStack.length}
+                                        onClick={this.undo}>
+                                        Undo{'  '}
+                                        <Badge color="primary" pill>{this.state.undoStack.length}</Badge>
+                                    </Button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+        );
+    };
+}
