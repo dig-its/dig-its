@@ -8,7 +8,7 @@
     "start": "next start",
     "test": "jest",
     "coverage": "jest --coverage && open coverage/lcov-report/index.html",
-    "export": "next build && next export -o ./gh-pages/"
+    "export": "next build && next export -o ./dig-its.github.io/"
   },
   "dependencies": {
     "next": "latest",
