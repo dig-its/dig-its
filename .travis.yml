@@ -12,4 +12,4 @@ script:
   - yarn test --coverage
 
 after_script:
-  - ./cc-test-reporter after-build --exit-code $TRAVIS_TEST_RESULT -t lcov -p ./coverage/
+  - ./cc-test-reporter after-build --exit-code $TRAVIS_TEST_RESULT -t lcov
