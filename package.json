@@ -6,7 +6,9 @@
     "dev": "next",
     "build": "next build",
     "start": "next start",
-    "test": "jest"
+    "test": "jest",
+    "coverage": "jest --coverage && open coverage/lcov-report/index.html",
+    "export": "next build && next export -o ./gh-pages/"
   },
   "dependencies": {
     "next": "latest",
