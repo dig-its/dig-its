@@ -15,21 +15,25 @@ export default class extends Component {
             return true;
         }
 
-        if (this.props.selected === this.props.index && nextProps.selected !== this.props.index) {
+        if (this.isSelected() && !this.isSelected(nextProps.selected)) {
             return true;
         }
 
-        if (this.props.selected !== this.props.index && nextProps.selected === this.props.index) {
+        if (!this.isSelected() && this.isSelected(nextProps.selected)) {
             return true;
         }
 
         return false;
     };
 
+    isSelected = (selected = this.props.selected) => {
+        return selected === this.props.index;
+    };
+
     render = () => {
         return (
             <div
-                className={'cell' + (this.props.index === this.props.selected ? ' selected' : '')}
+                className={'cell' + (this.isSelected() ? ' selected' : '')}
                 style={{ cursor: this.props.value ? 'pointer' : 'default' }}
                 onClick={this.select}>
                 <Head>
