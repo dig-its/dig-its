@@ -12,4 +12,11 @@ script:
   - yarn test -- --coverage
 
 after_script:
-  - ./cc-test-reporter after-build --exit-code $TRAVIS_TEST_RESULT -t lcov
+  - ./cc-test-reporter after-build --exit-code $TRAVIS_TEST_RESULT
+
+notifications:
+  email:
+    recipients:
+      - verheyen.koen@gmail.com
+    on_success: never
+    on_failure: always
