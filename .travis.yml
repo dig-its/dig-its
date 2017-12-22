@@ -23,7 +23,7 @@ deploy:
   skip_cleanup: true
   github_token: $GITHUB_TOKEN
   local_dir: out/
-  repo: https://github.com/dig-its/dig-its.github.io
+  repo: dig-its/dig-its.github.io
   target_branch: master
   project_name: dig-its.github.io
 
