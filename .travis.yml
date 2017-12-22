@@ -26,7 +26,6 @@ deploy:
   repo: https://github.com/dig-its/dig-its.github.io
   target_branch: master
   project_name: dig-its.github.io
-  github_url: https://dig-its.github.io
 
 notifications:
   email:
