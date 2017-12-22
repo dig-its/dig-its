@@ -1,6 +1,7 @@
 import { Component } from 'react';
 import Head from 'next/head';
 import { Container, Navbar, NavbarBrand } from 'reactstrap';
+import GithubRibbon from './GithubRibbon';
 
 export default class extends Component {
     constructor(props) {
@@ -30,6 +31,7 @@ export default class extends Component {
                         crossorigin="anonymous" />
                 </Head>
                 <Container>
+                    <GithubRibbon />
                     <h1>Dig-Its</h1>
 
                     {this.props.children}
