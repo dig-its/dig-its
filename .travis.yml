@@ -17,6 +17,7 @@ after_script:
 after_success:
   - yarn build
   - yarn run next export
+  - touch out/.nojekyll
 
 deploy:
   provider: pages
