@@ -192,6 +192,40 @@ export default class extends Component {
         }
     };
 
+    hasMoreMoves = () => {
+        // First find horizontally adjacent matches
+        const filteredGame = this.filteredGame();
+        if (this.hasMatch(filteredGame)) {
+            return true;
+        }
+
+        // Then vertically adjacent matches
+        for (let i = 0; i < 9; i++) {
+            if (this.hasMatch(this.getColumn(i))) {
+                return true;
+            }
+        }
+
+        return false;
+    };
+
+    hasMatch = (series) => {
+        for (let i = 0; i < series.length - 1; i++) {
+            const first = series[i];
+            const second = series[i + 1];
+
+            if (first === second || first + second === 10) {
+                return true;
+            }
+        }
+    };
+
+    getColumn = (index) => {
+        return this.state.game
+            .filter((v, i) => i % 9 === index)
+            .filter(v => v);
+    };
+
     checkWin = () => {
         if (this.filteredGame().length === 0) {
             this.setState({ won: true });
@@ -215,7 +249,7 @@ export default class extends Component {
                         <div className="col-sm-2 col-md-6">
                             <div style={{ position: 'sticky', top: '100px' }}>
                                 <div className="my-2">
-                                    <Button color="primary" onClick={this.addMoreNumbers}>Add more numbers</Button>
+                                    <Button color="primary" onClick={this.addMoreNumbers}>Add more numbers{this.hasMoreMoves() ? '' : ' *'}</Button>
                                 </div>
                                 <div className="my-2">
                                     <Button

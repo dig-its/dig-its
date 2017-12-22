@@ -450,4 +450,134 @@ describe('The Game component', function () {
             expect(game.state('selected')).toBeNull();
         });
     });
+
+    describe('The hasMoreMoves() method', function () {
+        describe('For horizontally adjacent cells', function () {
+            describe('On the same row', function () {
+                it('should return true if both cells have the same value', function () {
+                    const game = shallow(<Game />);
+
+                    game.setState({
+                        game: [
+                            null, 3, null, null, 3, null, null
+                        ]
+                    });
+
+                    expect(game.instance().hasMoreMoves()).toBe(true);
+                });
+
+                it('should return true if both cell values add up to 10', function () {
+                    const game = shallow(<Game />);
+
+                    game.setState({
+                        game: [
+                            null, 2, null, null, null, 8, null, null
+                        ]
+                    });
+
+                    expect(game.instance().hasMoreMoves()).toBe(true);
+                });
+
+                it('should return false if both cell values dont match', function () {
+                    const game = shallow(<Game />);
+
+                    game.setState({
+                        game: [
+                            null, null, null, 2, null, 7, null, null
+                        ]
+                    });
+
+                    expect(game.instance().hasMoreMoves()).toBe(false);
+                });
+            });
+
+            describe('On a different row', function () {
+                it('should return true if both cells have the same value', function () {
+                    const game = shallow(<Game />);
+
+                    game.setState({
+                        game: [
+                            null, 3, null, null, null, null, null, null, null,
+                            null, null, null, null, null, null, null, null, null,
+                            null, null, null, null, null, null, null, 3, null,
+                        ]
+                    });
+
+                    expect(game.instance().hasMoreMoves()).toBe(true);
+                });
+
+                it('should return true if both cell values add up to 10', function () {
+                    const game = shallow(<Game />);
+
+                    game.setState({
+                        game: [
+                            null, 3, null, null, null, null, null, null, null,
+                            null, null, null, null, null, null, null, null, null,
+                            null, null, null, null, null, null, null, 7, null,
+                        ]
+                    });
+
+                    expect(game.instance().hasMoreMoves()).toBe(true);
+                });
+
+                it('should return false if both cell values dont match', function () {
+                    const game = shallow(<Game />);
+
+                    game.setState({
+                        game: [
+                            null, 3, null, null, null, null, null, null, null,
+                            null, null, null, null, null, null, null, null, null,
+                            null, null, null, null, null, null, null, 9, null,
+                        ]
+                    });
+
+                    expect(game.instance().hasMoreMoves()).toBe(false);
+                });
+            });
+        });
+
+        describe('For vertically adjacent cells', function () {
+            it('should return true if both cells have the same value', function () {
+                const game = shallow(<Game />);
+
+                game.setState({
+                    game: [
+                        null, 3, null, null, null, 9, null, null, null,
+                        null, null, null, 6, null, null, null, null, null,
+                        null, 3, null, null, null, null, null, null, null,
+                    ]
+                });
+
+                expect(game.instance().hasMoreMoves()).toBe(true);
+            });
+
+            it('should return true if both cell values add up to 10', function () {
+                const game = shallow(<Game />);
+
+                game.setState({
+                    game: [
+                        null, 7, null, null, null, 9, null, null, null,
+                        null, null, null, 6, null, null, null, null, null,
+                        null, 3, null, null, null, null, null, null, null,
+                    ]
+                });
+
+                expect(game.instance().hasMoreMoves()).toBe(true);
+            });
+
+            it('should return false if both cell values dont match', function () {
+                const game = shallow(<Game />);
+
+                game.setState({
+                    game: [
+                        null, 3, null, null, null, 9, null, null, null,
+                        null, null, null, 6, null, null, null, null, null,
+                        null, 8, null, null, null, null, null, null, null,
+                    ]
+                });
+
+                expect(game.instance().hasMoreMoves()).toBe(false);
+            });
+        });
+    });
 });
