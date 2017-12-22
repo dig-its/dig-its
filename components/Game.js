@@ -249,7 +249,9 @@ export default class extends Component {
                         <div className="col-sm-2 col-md-6">
                             <div style={{ position: 'sticky', top: '100px' }}>
                                 <div className="my-2">
-                                    <Button color="primary" onClick={this.addMoreNumbers}>Add more numbers{this.hasMoreMoves() ? '' : ' *'}</Button>
+                                    <Button color="primary" onClick={this.addMoreNumbers}>
+                                        Add more numbers{this.hasMoreMoves() ? '' : ' *'}
+                                    </Button>
                                 </div>
                                 <div className="my-2">
                                     <Button
