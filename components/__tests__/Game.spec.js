@@ -579,5 +579,26 @@ describe('The Game component', function () {
                 expect(game.instance().hasMoreMoves()).toBe(false);
             });
         });
+
+        it('should work in combination with the undo function', function () {
+            const game = shallow(<Game />);
+
+            game.setState({
+                game: [null, 1, null, 3, null, 7, null, 8]
+            });
+
+            expect(game.instance().hasMoreMoves()).toBe(true);
+
+            game.instance().onCellClicked(5);
+            expect(game.instance().hasMoreMoves()).toBe(true);
+
+            game.instance().onCellClicked(3);
+            expect(game.instance().hasMoreMoves()).toBe(false);
+            expect(game.state('game')).toEqual([null, 1, null, null, null, null, null, 8]);
+
+            game.instance().undo();
+            expect(game.instance().hasMoreMoves()).toBe(true);
+            expect(game.state('game')).toEqual([null, 1, null, 3, null, 7, null, 8]);
+        });
     });
 });
