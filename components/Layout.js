@@ -2,6 +2,7 @@ import { Component } from 'react';
 import Head from 'next/head';
 import { Container, Navbar, NavbarBrand } from 'reactstrap';
 import GithubRibbon from './GithubRibbon';
+import ReactGA from 'react-ga';
 
 export default class extends Component {
     constructor(props) {
@@ -12,6 +13,13 @@ export default class extends Component {
             isOpen: false
         };
     }
+
+    componentDidMount = () => {
+        if (window.location.hostname != 'localhost') {
+            ReactGA.initialize('UA-111542732-1');
+            ReactGA.pageview(window.location.pathname + window.location.search);
+        }
+    };
 
     toggle() {
         this.setState({
