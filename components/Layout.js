@@ -15,7 +15,7 @@ export default class extends Component {
     }
 
     componentDidMount = () => {
-        if (window.location.hostname != 'localhost') {
+        if (window.location.hostname !== 'localhost') {
             ReactGA.initialize('UA-111542732-1');
             ReactGA.pageview(window.location.pathname + window.location.search);
         }
