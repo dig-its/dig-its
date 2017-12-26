@@ -119,7 +119,7 @@ describe('The Cell component', function () {
         it('should display a non-breaking space if the value is empty', function () {
             const cell = shallow(<Cell value={null} />);
 
-            expect(cell.find('.value').text()).toBe('\u00a0');
+            expect(cell.find('.value').render().text()).toBe('\u00a0');
         });
     });
 });
