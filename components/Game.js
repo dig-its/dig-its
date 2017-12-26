@@ -4,8 +4,10 @@ import { Component } from 'react';
 import { Button, Badge } from 'reactstrap';
 import _findLastIndex from 'lodash/findLastIndex';
 import _chunk from 'lodash/chunk';
+import FontAwesome from 'react-fontawesome';
 
 import Grid from './Grid';
+import NonBreakingSpace from './NonBreakingSpace';
 
 export default class extends Component {
     state = {
@@ -236,7 +238,12 @@ export default class extends Component {
         return (
             <div>
                 <div className="my-3">
-                    <Button color="success" onClick={this.newGame}>New game</Button>{' '}
+                    <Button color="success" onClick={this.newGame}>
+                        <FontAwesome name="repeat" />
+                        <NonBreakingSpace times={2} />
+                        New game
+                    </Button>
+                    <NonBreakingSpace />
                 </div>
                 <h2 style={{ display: this.state.won ? 'block' : 'none' }}>You won, great!</h2>
                 {this.state.game &&
@@ -250,7 +257,15 @@ export default class extends Component {
                             <div style={{ position: 'sticky', top: '100px' }}>
                                 <div className="my-2">
                                     <Button color="primary" onClick={this.addMoreNumbers}>
-                                        Add more numbers{this.hasMoreMoves() ? '' : ' *'}
+                                        <FontAwesome name="plus" />
+                                        <NonBreakingSpace times={2} />
+                                        Add more numbers
+                                        {this.hasMoreMoves() ? null : (
+                                            <span>
+                                                <NonBreakingSpace times={2} />
+                                                <FontAwesome name="exclamation-triangle" />
+                                            </span>
+                                        )}
                                     </Button>
                                 </div>
                                 <div className="my-2">
@@ -258,7 +273,10 @@ export default class extends Component {
                                         color="secondary"
                                         disabled={!this.state.undoStack.length}
                                         onClick={this.undo}>
-                                        Undo{'  '}
+                                        <FontAwesome name="undo" />
+                                        <NonBreakingSpace times={2} />
+                                        Undo
+                                        <NonBreakingSpace times={2} />
                                         <Badge color="primary" pill>{this.state.undoStack.length}</Badge>
                                     </Button>
                                 </div>

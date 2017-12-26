@@ -1,6 +1,8 @@
 import { Component } from 'react';
 import Head from 'next/head';
 
+import NonBreakingSpace from './NonBreakingSpace';
+
 export default class extends Component {
     size = 45;
 
@@ -91,7 +93,7 @@ export default class extends Component {
                 `}</style>
 
                 <div className="value">
-                    {this.props.value || '\u00a0'}
+                    {this.props.value || <NonBreakingSpace />}
                 </div>
             </div >
         );
