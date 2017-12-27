@@ -195,6 +195,10 @@ export default class extends Component {
     };
 
     hasMoreMoves = () => {
+        if (this.state.won) {
+            return true;
+        }
+
         // First find horizontally adjacent matches
         const filteredGame = this.filteredGame();
         if (this.hasMatch(filteredGame)) {

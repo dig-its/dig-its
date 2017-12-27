@@ -600,5 +600,24 @@ describe('The Game component', function () {
             expect(game.instance().hasMoreMoves()).toBe(true);
             expect(game.state('game')).toEqual([null, 1, null, 3, null, 7, null, 8]);
         });
+
+        it('should return true if the game was won', function () {
+            const game = shallow(<Game />);
+
+            game.setState({
+                game: [null, 1, null, 9, null]
+            });
+
+            expect(game.state('won')).toBe(false);
+            expect(game.instance().hasMoreMoves()).toBe(true);
+
+            game.instance().onCellClicked(1);
+            expect(game.state('won')).toBe(false);
+            expect(game.instance().hasMoreMoves()).toBe(true);
+
+            game.instance().onCellClicked(3);
+            expect(game.state('won')).toBe(true);
+            expect(game.instance().hasMoreMoves()).toBe(true);
+        });
     });
 });
