@@ -260,21 +260,18 @@ export default class extends Component {
                         <div className="col-sm-2 col-md-6">
                             <div style={{ position: 'sticky', top: '100px' }}>
                                 <div className="my-2">
-                                    <Button color="primary" onClick={this.addMoreNumbers}>
-                                        <FontAwesome name="plus" />
+                                    <Button color="primary"
+                                        outline={this.hasMoreMoves()}
+                                        disabled={this.state.won}
+                                        onClick={this.addMoreNumbers}>
+                                        <FontAwesome name="plus" spin={!this.hasMoreMoves()} />
                                         <NonBreakingSpace times={2} />
                                         Add more numbers
-                                        {this.hasMoreMoves() ? null : (
-                                            <span>
-                                                <NonBreakingSpace times={2} />
-                                                <FontAwesome name="exclamation-triangle" />
-                                            </span>
-                                        )}
                                     </Button>
                                 </div>
                                 <div className="my-2">
-                                    <Button
-                                        color="secondary"
+                                    <Button color="secondary"
+                                        outline
                                         disabled={!this.state.undoStack.length}
                                         onClick={this.undo}>
                                         <FontAwesome name="undo" />
