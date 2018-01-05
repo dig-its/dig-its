@@ -216,9 +216,9 @@ export default class extends Component {
     };
 
     hasMatch = (series) => {
-        for (let i = 0; i < series.length - 1; i++) {
+        for (let i = series.length - 1; i > 0; i--) {
             const first = series[i];
-            const second = series[i + 1];
+            const second = series[i - 1];
 
             if (first === second || first + second === 10) {
                 return true;
