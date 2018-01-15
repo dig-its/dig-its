@@ -250,7 +250,7 @@ export default class extends Component {
                     <NonBreakingSpace />
                 </div>
                 <h2 style={{ display: this.state.won ? 'block' : 'none' }}>You won, great!</h2>
-                {this.state.game &&
+                {this.state.game && !this.state.won &&
                     <div className="row">
                         <div className="col-sm-10 col-md-6">
                             <Grid grid={this.state.game}
