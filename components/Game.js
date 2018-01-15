@@ -29,10 +29,14 @@ export default class extends Component {
                 }
             });
 
-            this.setState({ game });
-        } else {
-            this.newGame();
+            if (this.filteredGame(game).length > 0) {
+                this.setState({ game });
+
+                return;
+            }
         }
+
+        this.newGame();
     };
 
     newGame = () => {
@@ -174,8 +178,8 @@ export default class extends Component {
         });
     };
 
-    filteredGame = () => {
-        return this.state.game.filter(c => c);
+    filteredGame = (game = this.state.game) => {
+        return game.filter(c => c);
     };
 
     undo = () => {

@@ -1,4 +1,5 @@
 import { shallow } from 'enzyme';
+import _fill from 'lodash/fill';
 
 import Game from '../Game';
 
@@ -31,6 +32,19 @@ describe('The Game component', function () {
 
             const game = shallow(<Game />);
             expect(game.state('game')).toEqual(grid);
+        });
+
+        it('should restart a new game if the saved game in local storage was won', function () {
+            let grid = _fill(Array(92, null));
+            localStorage.setItem('game', JSON.stringify(grid));
+
+            const game = shallow(<Game />);
+            expect(game.state('game')).toHaveLength(27);
+            game.state('game').forEach((v) => {
+                expect(v).not.toBeNull();
+                expect(v).toBeGreaterThanOrEqual(1);
+                expect(v).toBeLessThanOrEqual(9);
+            });
         });
 
         it('should clean up empty rows upon loading', function () {
