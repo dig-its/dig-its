@@ -11,21 +11,20 @@
     "export": "next build && next export -o ./dig-its.github.io/"
   },
   "dependencies": {
-    "next": "latest",
+    "next": "^5.0.0",
     "react": "^16.2.0",
-    "react-dom": "^16.1.1",
+    "react-dom": "^16.2.0",
     "react-fontawesome": "^1.6.1",
-    "react-ga": "^2.3.5",
+    "react-ga": "^2.4.1",
     "reactstrap": "^5.0.0-alpha.4"
   },
   "devDependencies": {
-    "babel-eslint": "7",
-    "enzyme": "^3.2.0",
-    "enzyme-adapter-react-16": "^1.1.0",
-    "eslint": "3.x",
-    "jest": "^21.0.0",
-    "jest-localstorage-mock": "^2.1.0",
-    "react-addons-test-utils": "^15.6.0",
-    "react-test-renderer": "^16.0.0"
+    "babel-eslint": "8.2.1",
+    "enzyme": "^3.3.0",
+    "enzyme-adapter-react-16": "^1.1.1",
+    "eslint": "4.17.0",
+    "jest": "^22.3.0",
+    "jest-localstorage-mock": "^2.2.0",
+    "react-test-renderer": "^16.2.0"
   }
 }
