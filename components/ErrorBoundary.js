@@ -14,7 +14,7 @@ export default class extends Component {
         };
 
         if (this.state.report) {
-            const options = { version };
+            const options = { release: version };
 
             Raven.config('https://c351cbe16e2d4e9a956d36394557f7cd@sentry.io/299119', options).install();
         }
