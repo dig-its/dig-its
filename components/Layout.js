@@ -1,8 +1,9 @@
 import { Component } from 'react';
 import Head from 'next/head';
 import { Container, Navbar, NavbarBrand } from 'reactstrap';
-import GithubRibbon from './GithubRibbon';
 import ReactGA from 'react-ga';
+
+import GithubRibbon from './GithubRibbon';
 
 export default class extends Component {
     constructor(props) {
@@ -18,8 +19,6 @@ export default class extends Component {
         if (window.location.hostname !== 'localhost') {
             ReactGA.initialize('UA-111542732-1');
             ReactGA.pageview(window.location.pathname + window.location.search);
-
-            Raven.config('https://c351cbe16e2d4e9a956d36394557f7cd@sentry.io/299119').install();
         }
     };
 
@@ -43,8 +42,6 @@ export default class extends Component {
                         rel="stylesheet"
                         integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN"
                         crossorigin="anonymous" />
-                    <script src="https://cdn.ravenjs.com/3.23.1/raven.min.js"
-                        crossorigin="anonymous"></script>
                 </Head>
                 <Container>
                     <GithubRibbon />

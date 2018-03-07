@@ -3,12 +3,13 @@
   "version": "1.0.0",
   "license": "MIT",
   "scripts": {
-    "dev": "next",
-    "build": "next build",
+    "version": "echo \"export default '`git rev-parse HEAD`';\" > version.js",
+    "dev": "yarn run version && next",
+    "build": "yarn run version && next build",
+    "export": "yarn run build && next export",
     "start": "next start",
     "test": "jest",
-    "coverage": "jest --coverage && open coverage/lcov-report/index.html",
-    "export": "next build && next export -o ./dig-its.github.io/"
+    "coverage": "jest --coverage && open coverage/lcov-report/index.html"
   },
   "dependencies": {
     "next": "^5.0.0",

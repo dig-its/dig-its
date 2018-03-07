@@ -4,3 +4,4 @@ node_modules/
 coverage/
 out/
 dig-its.github.io/
+version.js

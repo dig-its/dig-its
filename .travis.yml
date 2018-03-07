@@ -15,8 +15,7 @@ after_script:
   - ./cc-test-reporter after-build --exit-code $TRAVIS_TEST_RESULT
 
 after_success:
-  - yarn build
-  - yarn run next export
+  - yarn run export
   - touch out/.nojekyll
 
 deploy:
