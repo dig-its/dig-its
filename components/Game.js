@@ -54,12 +54,6 @@ export default class extends Component {
         });
     };
 
-    completeGame = (game) => {
-        while (game.length % 9 !== 0) {
-            game.push(null);
-        }
-    };
-
     setState = (update) => {
         if ('game' in update) {
             localStorage.setItem('game', JSON.stringify(update.game));
@@ -168,9 +162,13 @@ export default class extends Component {
         let lastUsedCell = _findLastIndex(game);
         game.splice(lastUsedCell + 1);
 
+        // Copy all non-empty cells to the end
         this.filteredGame().forEach(c => game.push(c));
 
-        this.completeGame(game);
+        // Add empty values to complete the last row
+        while (game.length % 9 !== 0) {
+            game.push(null);
+        }
 
         this.setState({
             game,

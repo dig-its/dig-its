@@ -128,24 +128,6 @@ describe('The Game component', function () {
         });
     });
 
-    describe('The completeGame() method', function () {
-        it('should add null values at the end of incomplete rows', function () {
-            const game = shallow(<Game />);
-
-            let grid = [1, 2, 3];
-            game.instance().completeGame(grid);
-            expect(grid).toEqual([1, 2, 3, null, null, null, null, null, null]);
-        });
-
-        it('should not change anything if the row is already complete', function () {
-            const game = shallow(<Game />);
-
-            const grid = [1, 2, 3, 4, 5, 6, 7, 8, 9];
-            game.instance().completeGame(grid);
-            expect(grid).toEqual([1, 2, 3, 4, 5, 6, 7, 8, 9]);
-        });
-    });
-
     describe('The onCellClicked() method', function () {
         describe('When first cell is clicked', function () {
             it('should store the selected index', function () {
@@ -385,6 +367,16 @@ describe('The Game component', function () {
                 null, null, 3, null, 8, 9, null, 7, 2,
                 6, 3, 8, 9, 7, 2, 6, null, null,
             ]);
+        });
+
+        it('should not complete the last row if the row is already complete', function () {
+            const game = shallow(<Game />);
+
+            game.setState({ game: [1, 2, 3, null, 5] });
+
+            game.instance().addMoreNumbers();
+
+            expect(game.state('game')).toEqual([1, 2, 3, null, 5, 1, 2, 3, 5]);
         });
 
         it('should clear the undo stack', function () {
