@@ -13,10 +13,10 @@ export default class extends Component {
             report: (process.env.NODE_ENV === 'production'),
         };
 
-        console.log(version);
-
         if (this.state.report) {
-            Raven.config('https://c351cbe16e2d4e9a956d36394557f7cd@sentry.io/299119').install();
+            const options = { version };
+
+            Raven.config('https://c351cbe16e2d4e9a956d36394557f7cd@sentry.io/299119', options).install();
         }
     }
 
