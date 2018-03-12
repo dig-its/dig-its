@@ -26,8 +26,6 @@ deploy:
   repo: dig-its/dig-its.github.io
   target_branch: master
   project_name: dig-its.github.io
-  edge: # This fixes temp deploy problem (see https://github.com/travis-ci/travis-ci/issues/9312)
-    branch: v1.8.47
 
 notifications:
   email:
