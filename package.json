@@ -20,7 +20,7 @@
     "react-dom": "^16.8.6",
     "react-fontawesome": "^1.6.1",
     "react-ga": "^2.6.0",
-    "reactstrap": "^5.0.0-alpha.4"
+    "reactstrap": "^8.0.0"
   },
   "devDependencies": {
     "babel-eslint": "8.2.1",
