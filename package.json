@@ -14,7 +14,7 @@
   },
   "dependencies": {
     "next": "^5.0.0",
-    "raven-js": "^3.23.1",
+    "raven-js": "^3.27.2",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
     "react-fontawesome": "^1.6.1",
