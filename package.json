@@ -13,20 +13,20 @@
     "serve": "yarn run export && npx http-server out/"
   },
   "dependencies": {
-    "next": "^8.1.0",
+    "next": "^9.1.3",
     "prop-types": "^15.7.2",
     "raven-js": "^3.27.2",
-    "react": "^16.8.6",
-    "react-dom": "^16.8.6",
-    "react-fontawesome": "^1.6.1",
-    "react-ga": "^2.6.0",
-    "reactstrap": "^8.0.0"
+    "react": "^16.11.0",
+    "react-dom": "^16.11.0",
+    "react-fontawesome": "^1.7.1",
+    "react-ga": "^2.7.0",
+    "reactstrap": "^8.1.1"
   },
   "devDependencies": {
     "enzyme": "^3.10.0",
-    "enzyme-adapter-react-16": "^1.14.0",
-    "jest": "^24.8.0",
+    "enzyme-adapter-react-16": "^1.15.1",
+    "jest": "^24.9.0",
     "jest-localstorage-mock": "^2.4.0",
-    "react-test-renderer": "^16.8.6"
+    "react-test-renderer": "^16.11.0"
   }
 }
