@@ -19,7 +19,7 @@ export default class extends Component {
 
     componentDidMount = () => {
         let game;
-        if (game = localStorage.getItem('game')) {
+        if (localStorage && (game = localStorage.getItem('game'))) {
             let rows = _chunk(JSON.parse(game), 9);
 
             game = [];
@@ -55,7 +55,7 @@ export default class extends Component {
     };
 
     setState = (update) => {
-        if ('game' in update) {
+        if ('game' in update && localStorage) {
             localStorage.setItem('game', JSON.stringify(update.game));
         }
 
