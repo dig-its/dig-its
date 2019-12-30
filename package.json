@@ -30,6 +30,7 @@
     "react-test-renderer": "^16.12.0"
   },
   "resolutions": {
-    "jsdom": "^15.2.1"
+    "jsdom": "^15.2.1",
+    "serialize-javascript": "^2.1.1"
   }
 }
