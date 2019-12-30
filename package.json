@@ -28,5 +28,8 @@
     "jest": "^24.9.0",
     "jest-localstorage-mock": "^2.4.0",
     "react-test-renderer": "^16.12.0"
+  },
+  "resolutions": {
+    "jsdom": "^15.2.1"
   }
 }
