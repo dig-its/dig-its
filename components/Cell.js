@@ -1,101 +1,98 @@
-import { Component } from 'react';
-import Head from 'next/head';
+import { Component } from 'react'
+import Head from 'next/head'
 
-import NonBreakingSpace from './NonBreakingSpace';
+import NonBreakingSpace from './NonBreakingSpace'
 
 export default class extends Component {
-    size = 45;
+  size = 45
 
-    select = () => {
-        if (this.props.value) {
-            this.props.onClick(this.props.index);
-        }
-    };
+  select = () => {
+    if (this.props.value) {
+      this.props.onClick(this.props.index)
+    }
+  }
 
-    shouldComponentUpdate = (nextProps) => {
-        if (this.props.value !== nextProps.value) {
-            return true;
-        }
+  shouldComponentUpdate = (nextProps) => {
+    if (this.props.value !== nextProps.value) {
+      return true
+    }
 
-        if (this.isSelected() && !this.isSelected(nextProps.selected)) {
-            return true;
-        }
+    if (this.isSelected() && !this.isSelected(nextProps.selected)) {
+      return true
+    }
 
-        if (!this.isSelected() && this.isSelected(nextProps.selected)) {
-            return true;
-        }
+    if (!this.isSelected() && this.isSelected(nextProps.selected)) {
+      return true
+    }
 
-        return false;
-    };
+    return false
+  }
 
-    isSelected = (selected = this.props.selected) => {
-        return selected === this.props.index;
-    };
+  isSelected = (selected = this.props.selected) => {
+    return selected === this.props.index
+  }
 
-    render = () => {
-        return (
-            <div
-                className={'cell' + (this.isSelected() ? ' selected' : '')}
-                style={{ cursor: this.props.value ? 'pointer' : 'default' }}
-                onClick={this.select}>
-                <Head>
-                    <link href="https://fonts.googleapis.com/css?family=Kalam" rel="stylesheet" />
-                </Head>
+  render = () => {
+    return (
+      <div
+        className={'cell' + (this.isSelected() ? ' selected' : '')}
+        style={{ cursor: this.props.value ? 'pointer' : 'default' }}
+        onClick={this.select}>
+        <Head>
+          <link href="https://fonts.googleapis.com/css?family=Mali" rel="stylesheet" />
+        </Head>
 
-                <style jsx>{`
-                    .cell {
-                        width: 11.10%;
-                        border-color: silver;
-                        border-style: solid;
-                        border-width: 0 1px 1px 0;
-                        float: left;
-                        color: darkblue;
-                        transition: all 0.3s ease;
-                        display: flex;
-                        justify-content: center;
-                        align-items: center;
-                    }
+        <style jsx>{`
+          .cell {
+            width: 11.1%;
+            border-color: silver;
+            border-style: solid;
+            border-width: 0 1px 1px 0;
+            float: left;
+            color: darkblue;
+            transition: all 0.3s ease;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+          }
 
-                    .cell:before {
-                        content: '';
-                        float: left;
-                        padding-top: 100%;
-                    }
+          .cell:before {
+            content: '';
+            float: left;
+            padding-top: 100%;
+          }
 
-                    .cell.selected {
-                        background-color: darkblue;
-                        color: white;
-                    }
+          .cell.selected {
+            background-color: darkblue;
+            color: white;
+          }
 
-                    .value {
-                        font-family: Kalam, Consolas, monospace;
-                        font-size: 45px;
-                    }
+          .value {
+            font-family: Mali, Consolas, monospace;
+            font-size: 45px;
+          }
 
-                    @media(max-width: 1580px) {
-                        .value {
-                            font-size: 35px;
-                        }
-                    }
-                    
-                    @media(max-width: 980px) {
-                        .value {
-                            font-size: 30px;
-                        }
-                    }
-                    
-                    @media(max-width: 320px) {
-                        .value {
-                            font-size: 15px;
-                        }
-                    }
-                        
-                `}</style>
+          @media (max-width: 1580px) {
+            .value {
+              font-size: 35px;
+            }
+          }
 
-                <div className="value">
-                    {this.props.value || <NonBreakingSpace />}
-                </div>
-            </div >
-        );
-    };
+          @media (max-width: 980px) {
+            .value {
+              font-size: 30px;
+            }
+          }
+
+          @media (max-width: 320px) {
+            .value {
+              font-size: 15px;
+            }
+          }
+        `}</style>
+
+        <div className="value">{this.props.value || <NonBreakingSpace />}</div>
+      </div>
+    )
+  }
 }
