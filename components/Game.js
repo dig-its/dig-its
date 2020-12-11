@@ -23,9 +23,9 @@ export default class extends Component {
       let rows = _chunk(JSON.parse(game), 9)
 
       game = []
-      rows.forEach((row) => {
-        if (row.some((v) => v)) {
-          row.forEach((v) => game.push(v))
+      rows.forEach(row => {
+        if (row.some(v => v)) {
+          row.forEach(v => game.push(v))
         }
       })
 
@@ -42,7 +42,7 @@ export default class extends Component {
   newGame = () => {
     const game = Array(27)
       .fill(null)
-      .map((v) => Math.ceil(Math.random() * 9))
+      .map(() => Math.ceil(Math.random() * 9))
 
     this.setState({
       game,
@@ -52,7 +52,7 @@ export default class extends Component {
     })
   }
 
-  setState = (update) => {
+  setState = update => {
     if ('game' in update && localStorage) {
       localStorage.setItem('game', JSON.stringify(update.game))
     }
@@ -60,7 +60,7 @@ export default class extends Component {
     super.setState(update)
   }
 
-  onCellClicked = (index) => {
+  onCellClicked = index => {
     const newState = {}
 
     if (this.state.selected === null) {
@@ -70,8 +70,16 @@ export default class extends Component {
         const previous = this.state.game[this.state.selected]
         const current = this.state.game[index]
 
-        if ((previous === current || previous + current === 10) && this.cellsAreAdjacent(this.state.selected, index)) {
-          newState.undoStack = this.registerUndo(this.state.selected, previous, index, current)
+        if (
+          (previous === current || previous + current === 10) &&
+          this.cellsAreAdjacent(this.state.selected, index)
+        ) {
+          newState.undoStack = this.registerUndo(
+            this.state.selected,
+            previous,
+            index,
+            current
+          )
 
           newState.game = this.state.game
           newState.game[this.state.selected] = null
@@ -123,7 +131,7 @@ export default class extends Component {
 
     let cells = this.state.game.slice(from + 1, to)
 
-    return cells.every((v) => v === null)
+    return cells.every(v => v === null)
   }
 
   cellsAreAdjacentVertically = (previousIndex, currentIndex) => {
@@ -159,7 +167,7 @@ export default class extends Component {
     game.splice(lastUsedCell + 1)
 
     // Copy all non-empty cells to the end
-    this.filteredGame().forEach((c) => game.push(c))
+    this.filteredGame().forEach(c => game.push(c))
 
     // Add empty values to complete the last row
     while (game.length % 9 !== 0) {
@@ -173,7 +181,7 @@ export default class extends Component {
   }
 
   filteredGame = (game = this.state.game) => {
-    return game.filter((c) => c)
+    return game.filter(c => c)
   }
 
   undo = () => {
@@ -213,7 +221,7 @@ export default class extends Component {
     return false
   }
 
-  hasMatch = (series) => {
+  hasMatch = series => {
     for (let i = series.length - 1; i > 0; i--) {
       const first = series[i]
       const second = series[i - 1]
@@ -224,8 +232,8 @@ export default class extends Component {
     }
   }
 
-  getColumn = (index) => {
-    return this.state.game.filter((v, i) => i % 9 === index).filter((v) => v)
+  getColumn = index => {
+    return this.state.game.filter((v, i) => i % 9 === index).filter(v => v)
   }
 
   checkWin = () => {
@@ -245,11 +253,17 @@ export default class extends Component {
           </Button>
           <NonBreakingSpace />
         </div>
-        <h2 style={{ display: this.state.won ? 'block' : 'none' }}>You won, great!</h2>
+        <h2 style={{ display: this.state.won ? 'block' : 'none' }}>
+          You won, great!
+        </h2>
         {this.state.game && !this.state.won && (
           <div className="row">
             <div className="col-sm-10 col-md-6">
-              <Grid grid={this.state.game} selected={this.state.selected} onCellClicked={this.onCellClicked} />
+              <Grid
+                grid={this.state.game}
+                selected={this.state.selected}
+                onCellClicked={this.onCellClicked}
+              />
             </div>
             <div className="col-sm-2 col-md-6">
               <div style={{ position: 'sticky', top: '100px' }}>
@@ -265,7 +279,11 @@ export default class extends Component {
                   </Button>
                 </div>
                 <div className="my-2">
-                  <Button color="secondary" outline disabled={!this.state.undoStack.length} onClick={this.undo}>
+                  <Button
+                    color="secondary"
+                    outline
+                    disabled={!this.state.undoStack.length}
+                    onClick={this.undo}>
                     <FontAwesome name="undo" />
                     <NonBreakingSpace times={2} />
                     Undo

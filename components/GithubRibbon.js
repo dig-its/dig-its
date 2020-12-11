@@ -1,19 +1,24 @@
-export default () => {
+const GithubRibbon = () => {
   return (
     <div>
       <a
-        href='https://github.com/dig-its/dig-its'
-        className='github-corner'
-        aria-label='View source on Github'
-        title='View source on Github'
-      >
+        href="https://github.com/dig-its/dig-its"
+        className="github-corner"
+        aria-label="View source on Github"
+        title="View source on Github">
         <svg
-          width='80'
-          height='80'
-          viewBox='0 0 250 250'
-          style={{ fill: '#64CEAA', color: '#fff', position: 'absolute', top: 0, border: 0, right: 0 }}
-          aria-hidden='true'
-        >
+          width="80"
+          height="80"
+          viewBox="0 0 250 250"
+          style={{
+            fill: '#64CEAA',
+            color: '#fff',
+            position: 'absolute',
+            top: 0,
+            border: 0,
+            right: 0,
+          }}
+          aria-hidden="true">
           <path d={'M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z'} />
           <path
             d={
@@ -21,9 +26,9 @@ export default () => {
               '78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,' +
               '97.6 130.6,101.9 134.4,103.2'
             }
-            fill='currentColor'
+            fill="currentColor"
             style={{ transformOrigin: '130px 106px' }}
-            className='octo-arm'
+            className="octo-arm"
           />
           <path
             d={
@@ -35,8 +40,8 @@ export default () => {
               '114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,' +
               '141.8 Z'
             }
-            fill='currentColor'
-            className='octo-body'
+            fill="currentColor"
+            className="octo-body"
           />
         </svg>
       </a>
@@ -75,3 +80,5 @@ export default () => {
     </div>
   )
 }
+
+export default GithubRibbon
