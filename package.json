@@ -1,7 +1,9 @@
 {
   "name": "dig-its",
+  "description": "A game with digits",
   "version": "1.0.0",
   "license": "MIT",
+  "repository": "github:dig-its/dig-its",
   "scripts": {
     "version": "echo \"export default '`git rev-parse HEAD`';\" > version.js",
     "dev": "yarn run version && next",
