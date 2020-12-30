@@ -33,6 +33,7 @@
   },
   "resolutions": {
     "jsdom": "^15.2.1",
-    "object-path": "^0.11"
+    "object-path": "^0.11",
+    "node-notifier": "^8.0.1"
   }
 }
