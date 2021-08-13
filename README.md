@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/dig-its/dig-its.svg?branch=master)](https://travis-ci.org/dig-its/dig-its)
+[![Build Status](https://travis-ci.com/dig-its/dig-its.svg?branch=master)](https://travis-ci.com/dig-its/dig-its)
 [![Maintainability](https://api.codeclimate.com/v1/badges/539128766f14dda7c277/maintainability)](https://codeclimate.com/github/dig-its/dig-its/maintainability)
 [![Test Coverage](https://api.codeclimate.com/v1/badges/539128766f14dda7c277/test_coverage)](https://codeclimate.com/github/dig-its/dig-its/test_coverage)
 ![CodeQL](https://github.com/dig-its/dig-its/workflows/CodeQL/badge.svg)
