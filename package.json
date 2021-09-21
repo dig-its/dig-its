@@ -16,7 +16,7 @@
   },
   "dependencies": {
     "next": "^11.1.2",
-    "object-path": "0.11.7",
+    "object-path": "0.11.8",
     "prop-types": "^15.7.2",
     "raven-js": "^3.27.2",
     "react": "^17.0.2",
