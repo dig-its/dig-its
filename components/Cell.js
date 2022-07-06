@@ -1,5 +1,4 @@
 import { Component } from 'react'
-import Head from 'next/head'
 
 import NonBreakingSpace from './NonBreakingSpace'
 
@@ -12,7 +11,7 @@ export default class extends Component {
     }
   }
 
-  shouldComponentUpdate = (nextProps) => {
+  shouldComponentUpdate = nextProps => {
     if (this.props.value !== nextProps.value) {
       return true
     }
@@ -38,10 +37,6 @@ export default class extends Component {
         className={'cell' + (this.isSelected() ? ' selected' : '')}
         style={{ cursor: this.props.value ? 'pointer' : 'default' }}
         onClick={this.select}>
-        <Head>
-          <link href="https://fonts.googleapis.com/css?family=Mali" rel="stylesheet" />
-        </Head>
-
         <style jsx>{`
           .cell {
             width: 11.1%;
