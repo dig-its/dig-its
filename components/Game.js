@@ -288,7 +288,7 @@ export default class extends Component {
                     <NonBreakingSpace times={2} />
                     Undo
                     <NonBreakingSpace times={2} />
-                    <Badge color="primary" pill>
+                    <Badge color="primary" pill className="undo-badge">
                       {this.state.undoStack.length}
                     </Badge>
                   </Button>
