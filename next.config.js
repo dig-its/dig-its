@@ -1,10 +1,10 @@
 module.exports = {
-  exportPathMap: function() {
+  exportPathMap: function () {
     return {
-      '/': { page: '/' }
+      '/': { page: '/' },
     }
   },
   devIndicators: {
-    autoPrerender: false
-  }
+    buildActivity: false,
+  },
 }
