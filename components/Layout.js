@@ -1,7 +1,7 @@
 import { Component } from 'react'
 import Head from 'next/head'
 import { Container } from 'reactstrap'
-import ReactGA from 'react-ga'
+import ReactGA from 'react-ga4'
 import Script from 'next/script'
 
 import GithubRibbon from './GithubRibbon'
@@ -18,8 +18,11 @@ export default class extends Component {
 
   componentDidMount = () => {
     if (window.location.hostname !== 'localhost') {
-      ReactGA.initialize('UA-111542732-1')
-      ReactGA.pageview(window.location.pathname + window.location.search)
+      ReactGA.initialize([{ trackingId: 'G-X43JKMZ9SV' }])
+      ReactGA.send({
+        hitType: 'pageview',
+        page: window.location.pathname,
+      })
     }
   }
 
