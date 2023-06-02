@@ -1,4 +1,5 @@
 import { Html, Head, Main, NextScript } from 'next/document'
+import version from '../version'
 
 export default function Document() {
   return (
@@ -17,6 +18,7 @@ export default function Document() {
           crossOrigin="anonymous"
         />
         <link href="https://fonts.googleapis.com/css?family=Mali" rel="stylesheet" />
+        <meta name="version" content={version} />
       </Head>
 
       <body>
