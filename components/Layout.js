@@ -45,14 +45,14 @@ export default class extends Component {
 
           {this.props.children}
 
-          <Script src="https://www.googletagmanager.com/gtag/js?id=UA-111542732-1" strategy="afterInteractive" />
+          <Script async src="https://www.googletagmanager.com/gtag/js?id=G-X43JKMZ9SV" />
           <Script id="google-analytics" strategy="afterInteractive">
             {`
               window.dataLayer = window.dataLayer || [];
               function gtag(){dataLayer.push(arguments);}
               gtag('js', new Date());
-              
-              gtag('config', 'UA-111542732-1');
+            
+              gtag('config', 'G-X43JKMZ9SV');
             `}
           </Script>
         </Container>
