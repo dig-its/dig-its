@@ -1,42 +1,43 @@
-import { Component } from 'react'
+import { Component } from "react";
 
-import NonBreakingSpace from './NonBreakingSpace'
+import NonBreakingSpace from "./NonBreakingSpace";
 
-export default class extends Component {
-  size = 45
+export default class Cell extends Component {
+  size = 45;
 
   select = () => {
     if (this.props.value) {
-      this.props.onClick(this.props.index)
+      this.props.onClick(this.props.index);
     }
-  }
+  };
 
-  shouldComponentUpdate = nextProps => {
+  shouldComponentUpdate = (nextProps) => {
     if (this.props.value !== nextProps.value) {
-      return true
+      return true;
     }
 
     if (this.isSelected() && !this.isSelected(nextProps.selected)) {
-      return true
+      return true;
     }
 
     if (!this.isSelected() && this.isSelected(nextProps.selected)) {
-      return true
+      return true;
     }
 
-    return false
-  }
+    return false;
+  };
 
   isSelected = (selected = this.props.selected) => {
-    return selected === this.props.index
-  }
+    return selected === this.props.index;
+  };
 
   render = () => {
     return (
       <div
-        className={'cell' + (this.isSelected() ? ' selected' : '')}
-        style={{ cursor: this.props.value ? 'pointer' : 'default' }}
-        onClick={this.select}>
+        className={"cell" + (this.isSelected() ? " selected" : "")}
+        style={{ cursor: this.props.value ? "pointer" : "default" }}
+        onClick={this.select}
+      >
         <style jsx>{`
           .cell {
             width: 11.1%;
@@ -52,7 +53,7 @@ export default class extends Component {
           }
 
           .cell:before {
-            content: '';
+            content: "";
             float: left;
             padding-top: 100%;
           }
@@ -88,6 +89,6 @@ export default class extends Component {
 
         <div className="value">{this.props.value || <NonBreakingSpace />}</div>
       </div>
-    )
-  }
+    );
+  };
 }

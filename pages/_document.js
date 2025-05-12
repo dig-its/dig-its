@@ -1,5 +1,5 @@
-import { Html, Head, Main, NextScript } from 'next/document'
-import version from '../version'
+import { Html, Head, Main, NextScript } from "next/document";
+import version from "../version";
 
 export default function Document() {
   return (
@@ -17,7 +17,10 @@ export default function Document() {
           integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN"
           crossOrigin="anonymous"
         />
-        <link href="https://fonts.googleapis.com/css?family=Mali" rel="stylesheet" />
+        <link
+          href="https://fonts.googleapis.com/css?family=Mali&display=swap"
+          rel="stylesheet"
+        />
         <meta name="version" content={version} />
       </Head>
 
@@ -26,5 +29,5 @@ export default function Document() {
         <NextScript />
       </body>
     </Html>
-  )
+  );
 }
